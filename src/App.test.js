@@ -1,21 +1,31 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
 import { shallow } from 'enzyme';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+import Menu from './components/Menu';
 
-describe('App', () => {
-  it('should have the `th` "test"', () => {
-    const wrapper = shallow(
-      <App />
-    );
-    expect(
-      wrapper.contains(<th>test</th>)
-    ).toBe(true);
+const setup = (props={}, state=null) => {
+  return shallow(<App {...props} />);
+}
+
+describe('App tests', () => {
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = setup();
   });
+
+  test('renders withour errors', () => {
+    const appComponent = wrapper.find('[data-test="component-app"]');
+    expect(appComponent.length).toBe(1);
+  }); 
+  test('renders menu element', () => {
+    const menuComponent = wrapper.containsMatchingElement(<Menu />);
+    expect(menuComponent).toBe(true);
+  });
+  test('renders puzzle container', () => {
+    const puzzleComponent = wrapper.find('[data-test="component-puzzle"]');
+    expect(puzzleComponent.length).toBe(1);
+  });
+
 })
