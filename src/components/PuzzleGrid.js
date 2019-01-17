@@ -1,37 +1,25 @@
 import React, { Component } from 'react';
 import Cell from './Cell';
-
-const data = [
-    [
-        {"n1":2, "n2":4, "color":"red"},
-        {"n1":1, "n2":4, "color":"blue"},
-        {"n1":5, "n2":4, "color":"red"},
-        {"n1":0, "n2":4, "color":"black"},
-        {"n1":3, "n2":4, "color":"red"}
-    ],
-    [
-        {"n1":2, "n2":0, "color":"red"},
-        {"n1":2, "n2":8, "color":"green"},
-        {"n1":2, "n2":5, "color":"red"},
-        {"n1":2, "n2":7, "color":"yellow"},
-        {"n1":2, "n2":1, "color":"red"}
-    ],
-    [
-        {"n1":2, "n2":4, "color":"white"},
-        {"n1":2, "n2":4, "color":"blue"},
-        {"n1":2, "n2":4, "color":"blue"},
-        {"n1":2, "n2":4, "color":"red"},
-        {"n1":2, "n2":4, "color":"red"}
-    ],
-];
+import Addto10 from '../data/add0to10.json';
 
 class PuzzleGrid extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            data: [],
+        }
+    }
+    
+    componentDidMount() {
+        this.setState({ data: Addto10 });
+    }
     
     createGrid = () => {
         const rows =[]; 
 
-        for ( let r = 0; r < data.length; r++ ) {
-            const row = data[r].map((btn, index) => 
+        for ( let r = 0; r < this.state.data.length; r++ ) {
+            const row = this.state.data[r].map((btn, index) => 
                 <Cell 
                     key={`btn_`+index}
                     val1={btn.n1}

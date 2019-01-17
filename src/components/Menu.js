@@ -7,7 +7,7 @@ class Menu extends Component {
                 <div className="item">
                     <div className="header">Addition</div>
                     <div className="menu">
-                    <a href="/" className="item">0 - 10</a>
+                    <a href="/" className="item active">0 - 10</a>
                     <a href="/" className="item">11 - 20</a>
                     </div>
                 </div>
