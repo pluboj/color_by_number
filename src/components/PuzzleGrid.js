@@ -2,9 +2,27 @@ import React, { Component } from 'react';
 import Cell from './Cell';
 
 const data = [
-    [[1,4],[5,6],[1,0],[2,4],[5,2]],
-    [[1,8],[0,6],[1,9],[3,4],[5,2]],
-    [[4,4],[5,6],[1,9],[2,4],[7,2]]
+    [
+        {"n1":2, "n2":4, "color":"red"},
+        {"n1":1, "n2":4, "color":"blue"},
+        {"n1":5, "n2":4, "color":"red"},
+        {"n1":0, "n2":4, "color":"black"},
+        {"n1":3, "n2":4, "color":"red"}
+    ],
+    [
+        {"n1":2, "n2":0, "color":"red"},
+        {"n1":2, "n2":8, "color":"green"},
+        {"n1":2, "n2":5, "color":"red"},
+        {"n1":2, "n2":7, "color":"yellow"},
+        {"n1":2, "n2":1, "color":"red"}
+    ],
+    [
+        {"n1":2, "n2":4, "color":"white"},
+        {"n1":2, "n2":4, "color":"blue"},
+        {"n1":2, "n2":4, "color":"blue"},
+        {"n1":2, "n2":4, "color":"red"},
+        {"n1":2, "n2":4, "color":"red"}
+    ],
 ];
 
 class PuzzleGrid extends Component {
@@ -14,14 +32,14 @@ class PuzzleGrid extends Component {
 
         for ( let r = 0; r < data.length; r++ ) {
             const row = data[r].map((btn, index) => 
-                // <div className="ui button" key={`btn_`+index}>{btn[0]} + {btn[1]}</div>
                 <Cell 
                     key={`btn_`+index}
-                    val1={btn[0]}
-                    val2={btn[1]}>
+                    val1={btn.n1}
+                    val2={btn.n2}
+                    c={btn.color}>
                 </Cell>
             );
-            rows.push(<div className="row" key={`row_`+r}>{ row }</div>);
+            rows.push(<div className="row" style={{paddingBottom: '0', paddingTop: '0'}} key={`row_`+r}>{ row }</div>);
         }
 
         return rows;  
